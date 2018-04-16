@@ -1,7 +1,6 @@
 package goq
 
 import (
-	"log"
 	"sync"
 )
 
@@ -11,7 +10,7 @@ func New()Mq{
 }
 type Mq struct{
 	Lock sync.Mutex
-	Previous *Mq
+	// Previous *Mq
 	Data interface{}
 	Next *Mq
 }
@@ -31,30 +30,30 @@ func (s * Mq)In(v interface{})interface{}{
 		return nil
 	}
 	r:=s.Last()
-	n:=&Mq{
-		Previous:r,
-		Data:v,
-		Next:nil,
-	}
 	s.Lock.Lock()
-	r=n
+	r.Data=v
+	r.Next=&Mq{}
 	s.Lock.Unlock()
 	return v
 }
 func (s * Mq)Out()interface{}{
 	s.Lock.Lock()
-	defer s.Lock.Unlock()
-	log.Println("b:",s.Next.Data,s.Previous.Data)		
-	if s.Data==nil{
+	s.Lock.Unlock()	
+	r:=s.Data
+	if r==nil{
 		return nil
 	}
-	v:=s.Data
-	s=s.Next
-	return v
+	l:=s.Next.Lock
+	*s=*s.Next
+	s.Lock=l
+	return r
 }
 func (s * Mq)Last()*Mq{
+	var m *Mq=s	
+	if m.Data==nil{
+		return m
+	}
 	s.Lock.Lock()
-	var m *Mq=s
 	for{
 		if m.Next==nil{
 			s.Lock.Unlock()			
