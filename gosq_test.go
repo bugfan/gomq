@@ -1,4 +1,4 @@
-package goq
+package gomq
 import(
 	"testing"	
 	"log"
