@@ -10,6 +10,7 @@
         入队列 test.In(Data)
         长度 test.Len()
         出队列 test.Out()
+        
     # 方法二
         cd .../gomq
         执行 go test
