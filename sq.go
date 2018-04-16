@@ -1,4 +1,4 @@
-package gosq
+package gomq
 
 import (
 	"sync"
