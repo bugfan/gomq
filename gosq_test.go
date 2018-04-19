@@ -19,6 +19,7 @@ func TestSq(t *testing.T) {
 	log.Println(test.Out())	
 	log.Println(test.In("avvv"))
 	log.Println(test.In("121"))
+	test.Clear()
 	log.Println(test.Out())	
 	log.Println(test.Out())	
 	log.Println(test.Out())	
