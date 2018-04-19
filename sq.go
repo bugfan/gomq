@@ -38,12 +38,13 @@ func (s * Mq)In(v interface{})interface{}{
 }
 func (s * Mq)Out()interface{}{
 	s.Lock.Lock()
-	s.Lock.Unlock()	
 	r:=s.Data
 	if r==nil{
+		s.Lock.Unlock()				
 		return nil
 	}
 	l:=s.Next.Lock
+	s.Lock.Unlock()			
 	*s=*s.Next
 	s.Lock=l
 	return r
@@ -61,4 +62,11 @@ func (s * Mq)Last()*Mq{
 		}	
 		m=m.Next
 	}
+}
+func (s * Mq)Clear(){
+	for{
+		if nil==s.Out(){
+			return
+		}
+	}	
 }
