@@ -1,6 +1,6 @@
 # gomq 简单好用的消息队列和栈
 
-## 介绍
+## 功能介绍
 - 1.链表(消息队列) 
 - 2.栈 
 ## 链表 使用方法
@@ -18,7 +18,7 @@
 - `压栈` stack.Push(Data)
 - `出栈` stack.Pop()
 - `长度` stack.Size()
-- `清空队列` stack.Clear()
+- `清空栈` stack.Clear()
 
 
 ## 测试 cd .../gomq 执行 go test
