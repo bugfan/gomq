@@ -5,8 +5,8 @@ import (
 )
 
 //new varible mq
-func NewMQ() Mq {
-	return Mq{}
+func NewMQ() *Mq {
+	return &Mq{}
 }
 
 type Mq struct {

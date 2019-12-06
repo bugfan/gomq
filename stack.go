@@ -5,8 +5,8 @@ import (
 	"sync"
 )
 
-func NewStack() Stack {
-	return Stack{}
+func NewStack() *Stack {
+	return &Stack{}
 }
 
 type Stack struct {
